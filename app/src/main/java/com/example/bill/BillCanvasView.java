@@ -114,6 +114,14 @@ public class BillCanvasView extends View {
 
         return y + ITEM_SPACING;
     }
+    public void setShopInfo(String name, String address, String phone) {
+        this.shopName = name;
+        this.shopAddress = address;
+        this.shopPhone = phone;
+        resetCache();
+        requestLayout();
+        invalidate();
+    }
 
     private int drawShopInfo(Canvas canvas, int y) {
         paint.setColor(COLOR_TEXT);
@@ -285,6 +293,39 @@ public class BillCanvasView extends View {
             cachedBitmap = null;
         }
         isCached = false;
+    }
+    public void loadFromQueryString(String query) {
+        clearItems(); // Xóa dữ liệu cũ
+        String[] pairs = query.split("&");
+        for (String pair : pairs) {
+            String[] keyValue = pair.split("=");
+            if (keyValue.length != 2) continue;
+
+            String key = keyValue[0];
+            String value = java.net.URLDecoder.decode(keyValue[1], java.nio.charset.StandardCharsets.UTF_8);
+
+            if (key.equals("shopName")) {
+                setShopInfo(value, shopAddress, shopPhone); // Sử dụng địa chỉ/sđt mặc định
+            } else if (key.startsWith("item")) {
+                String[] parts = value.split(",");
+                if (parts.length == 3) {
+                    try {
+                        String name = parts[0].trim();
+                        int qty = Integer.parseInt(parts[1].trim());
+                        int price = Integer.parseInt(parts[2].trim());
+                        addItem(name, qty, price);
+                    } catch (NumberFormatException e) {
+                        // Bỏ qua lỗi định dạng
+                    }
+                }
+            }
+        }
+
+
+
+    // Cập nhật ngày giờ và số hóa đơn mới
+        this.currentDate = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss", Locale.getDefault()).format(new Date());
+        this.invoiceNumber = generateInvoiceNumber();
     }
 
     @Override

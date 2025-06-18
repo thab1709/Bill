@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Thêm tiêu đề có thể đọc được -->
+        <TextView
+            android:id="@+id/invoiceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hóa đơn thanh toán"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Hóa đơn thanh toán" />
+
+        <!-- BillCanvasView sẽ được thêm từ mã Java -->
+
+    </LinearLayout>
+</ScrollView>
+
+

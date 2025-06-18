@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:padding="16dp"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edtShopName"
+        android:layout_width="401dp"
+        android:layout_height="67dp"
+        android:hint="Tên cửa hàng" />
+
+    <EditText android:id="@+id/edtItems"
+        android:hint="Nhập sản phẩm (Tên,SL,Giá) mỗi dòng"
+        android:inputType="textMultiLine"
+        android:minLines="4"
+        android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tạo hóa đơn" />
+</LinearLayout>
